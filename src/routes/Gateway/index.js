@@ -17,7 +17,9 @@ export class Gateway extends React.Component {
 
   render () {
     const { devices, nodes } = this.props
-    const data = devices.filter(device => device.board[0] === '1')
+    const data = devices.filter(({ type, board }) => {
+      return type === '3' || board[0] === '1'
+    })
 
     const nodeList = nodes.map(model => {
       const device = devices.find(dev => dev.deviceId === model.devId)
